@@ -1,0 +1,17 @@
+Current Round: 2
+Current Player: 1
+Player Left In Round: 3
+Starting Player: 0
+Table: SA 
+AI 
+ID: 1
+Hand: D3 H5 D5 D9 DQ CK S2 
+Has Passed: False
+Human
+ID: 0
+Hand: S4 D4 D6 DA CJ HJ HA H6 H9 D7 H8 SX SK DJ C4 S7 
+Has Passed: False
+AI 
+ID: 2
+Hand: S3 H2 
+Has Passed: False
