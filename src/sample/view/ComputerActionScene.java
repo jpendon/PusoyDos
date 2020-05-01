@@ -1,4 +1,4 @@
-package sample.scene;
+package sample.view;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -15,13 +15,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import sample.model.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.management.PlatformLoggingMXBean;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -41,9 +39,6 @@ public class ComputerActionScene implements Initializable {
     private Label computerActionPane;
 
     @FXML
-    public Label roundInfoPane;
-
-    @FXML
     public Button continueButton;
 
     @Override
@@ -54,6 +49,7 @@ public class ComputerActionScene implements Initializable {
             // Update cardsUsedPane
             ArrayList<StackPane> paneList = new ArrayList<>();
 
+            // Iterate through the cards chosen by the AI
             for (Card card: this.cardsUsed)
             {
                 String url = "resources/" + card.GetCardName().toLowerCase() + ".png";
@@ -77,8 +73,6 @@ public class ComputerActionScene implements Initializable {
             // Update computerActionPane
             this.computerActionPane.setText(computerAction);
             this.computerActionPane.setFont(new Font(20));
-            // Update Round Information
-
         });
     }
 

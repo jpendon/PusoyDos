@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.scene.InvalidActionScene">
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.view.InvalidActionScene">
    <children>
       <Button fx:id="continueButton" onAction="#continueButtonOnAction" layoutX="584.0" layoutY="520.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="113.0" text="Continue" />
       <Label fx:id="invalidTextPane" layoutX="383.0" layoutY="125.0" prefHeight="202.0" prefWidth="478.0" />

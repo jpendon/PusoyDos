@@ -1,4 +1,4 @@
-package sample.scene;
+package sample.view;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
