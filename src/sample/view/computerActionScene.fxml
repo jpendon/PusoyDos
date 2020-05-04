@@ -9,6 +9,6 @@
    <children>
       <FlowPane fx:id="cardsUsedPane" layoutX="148.0" layoutY="185.0" prefHeight="327.0" prefWidth="984.0" />
       <Label fx:id="computerActionPane" layoutX="148.0" layoutY="97.0" prefHeight="59.0" prefWidth="418.0" text="Label" />
-      <Button fx:id="continueButton" onAction="#continueButtonOnClick" layoutX="1166.0" layoutY="334.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="100.0" text="Continue" />
+      <Button fx:id="continueButton" onAction="#ContinueButtonOnClick" layoutX="1166.0" layoutY="334.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="100.0" text="Continue" />
    </children>
 </AnchorPane>

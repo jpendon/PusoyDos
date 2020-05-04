@@ -402,7 +402,8 @@ DATE
             return true;
 
         // Check if Cards played and Cards on table are equal
-        if (a_cardsPlayed.size() != a_tableCards.size()) return false;
+        if (a_cardsPlayed.size() != a_tableCards.size())
+            return false;
 
         // Check if Cards played is a single card
         if (a_cardsPlayed.size() == 1)
@@ -495,13 +496,30 @@ DATE
 */
 /**/
     private Boolean CheckIfCardsHaveC3(Vector<Card> a_cards) {
+        Boolean isValid = false;
         for (int i = 0; i < a_cards.size(); i++)
         {
             if (a_cards.elementAt(i).GetCardName().equals("C3"))
-                return true;
+                isValid = true;
         }
 
-        return false;
+        if (!isValid)
+            return false;
+
+        // Check if Cards played is a single card
+        if (a_cards.size() == 1)
+            return true;
+
+        // Check if Cards played is a multiple
+        if (a_cards.size() > 1 && a_cards.size() < 5)
+            return AreCardsEqual(a_cards);
+
+
+
+         if (DetermineFiveCardType(a_cards).equals("NULL"))
+            return false;
+
+         return true;
     }
 /*Boolean Player::CheckIfCardsHaveC3(Vector<Card> a_cards);*/
 

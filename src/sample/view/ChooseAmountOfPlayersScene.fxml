@@ -8,7 +8,7 @@
 <AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.view.ChooseAmountOfPlayersScene">
    <children>
       <Label fx:id="choosePlayerLabel" layoutX="395.0" layoutY="102.0" prefHeight="85.0" prefWidth="481.0" text="Label" />
-      <Button fx:id="threePlayerButton" onAction="#threePlayerButtonOnClick" layoutX="429.0" layoutY="332.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="101.0" text="3" />
-      <Button fx:id="fourPlayerButton" onAction="#fourPlayerButtonOnClick" layoutX="640.0" layoutY="332.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="101.0" text="4" />
+      <Button fx:id="threePlayerButton" onAction="#ThreePlayerButtonOnClick" layoutX="429.0" layoutY="332.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="101.0" text="3" />
+      <Button fx:id="fourPlayerButton" onAction="#FourPlayerButtonOnClick" layoutX="640.0" layoutY="332.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="101.0" text="4" />
    </children>
 </AnchorPane>

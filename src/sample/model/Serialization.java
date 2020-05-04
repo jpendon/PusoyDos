@@ -394,6 +394,7 @@ DATE
 
         File file = new File(a_filePath);
         Scanner in = new Scanner(file,"UTF-8");
+
         while((in.hasNext()))
         {
             line = in.nextLine();
@@ -469,7 +470,7 @@ DATE
         if (a_token.equals("Starting Player"))
             this.m_startingPlayer = Integer.parseInt(a_info[1].trim());
 
-        if (a_token.equals("Table"))
+        if (a_token.equals("Table") && a_info.length == 2)
             this.m_tableCards = CreateCardVec(GetCardNames(a_info[1].trim()));
 
         if (a_token.equals("AI"))

@@ -30,7 +30,7 @@ public class BaseScene implements Initializable {
             if (round.CheckIfGameEnded())
             {
                 try {
-                    displayGameEndScene();
+                    DisplayGameEndScene();
                     return;
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -42,7 +42,7 @@ public class BaseScene implements Initializable {
             if (round.GetPlayerCounter() == 1)
             {
                 try {
-                    displayNewRound();
+                    DisplayNewRound();
                     return;
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -65,7 +65,7 @@ public class BaseScene implements Initializable {
             if (round.GetPlayers().elementAt(round.GetCurrentPlayer()).GetHasPassed())
             {
                 try {
-                    displayBaseScene();
+                    DisplayBaseScene();
                     return;
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -76,7 +76,7 @@ public class BaseScene implements Initializable {
             if (round.GetPlayers().elementAt(round.GetCurrentPlayer()) instanceof AI)
             {
                 try {
-                    playComputerTurn();
+                    PlayComputerTurn();
                     return;
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -86,7 +86,7 @@ public class BaseScene implements Initializable {
             // Human is Next
 
             try {
-                displayPlayerScene();
+                DisplayPlayerScene();
                 return;
             } catch (IOException e) {
                 e.printStackTrace();
@@ -94,7 +94,38 @@ public class BaseScene implements Initializable {
         });
     }
 
-    public void playComputerTurn() throws IOException {
+/**/
+/*
+BaseScene::PlayComputerTurn()
+
+NAME
+
+    BaseScene::PlayComputerTurn - Computer makes a turn
+
+SYNOPSIS
+
+    void BaseScene::PlayComputerTurn();
+
+DESCRIPTION
+
+    The function gets the AI object from the round and calls the function DecideAction.
+    If the vector of cards returned from the function has a size of zero, then the computer
+    has passed its turn and the necessary actions are taken. If not then the cards
+    on the table are replaced.
+
+RETURNS
+
+AUTHOR
+
+    Jay Pendon
+
+DATE
+
+    6:42am 4/2/2020
+
+*/
+/**/
+    private void PlayComputerTurn() throws IOException {
         Game game = this.m_gameFile.GetGame();
         Round round = game.GetRound();
 
@@ -110,7 +141,7 @@ public class BaseScene implements Initializable {
 
             String computerActionString =  "Computer " + computer.GetPlayerId() + " passed.";
 
-            displayComputerAction(computerActionString, playCards);
+            DisplayComputerAction(computerActionString, playCards);
 
             return;
         }
@@ -120,27 +151,83 @@ public class BaseScene implements Initializable {
         // Display Computer's Action
         String computerActionString =  "Computer " + computer.GetPlayerId() + " played: ";
 
-
         // Display Computer's Action to View
-        displayComputerAction(computerActionString, playCards);
+        DisplayComputerAction(computerActionString, playCards);
 
     }
+/*void BaseScene::PlayComputerTurn();*/
 
-    public void displayGameEndScene() throws IOException
+/**/
+/*
+BaseScene::DisplayGameEndScene()
+
+NAME
+
+    BaseScene::DisplayGameEndScene - Displays the scene for ending the game
+
+SYNOPSIS
+
+    void BaseScene::DisplayGameEndScene();
+
+DESCRIPTION
+
+    The function sets up and display the scene for ending the game.
+
+RETURNS
+
+AUTHOR
+
+    Jay Pendon
+
+DATE
+
+    7:21am 4/2/2020
+*/
+/**/
+    private void DisplayGameEndScene() throws IOException
     {
         FXMLLoader loader= new FXMLLoader(getClass().getResource("gameEndScene.fxml"));
         Parent parent = loader.load();
         parent.setStyle("-fx-background-color: #009900;");
 
         GameEndScene controller = loader.getController();
-        controller.setGameFile(this.m_gameFile);
-        controller.setStage(this.m_stage);
+        controller.SetGameFile(this.m_gameFile);
+        controller.SetStage(this.m_stage);
 
         this.m_stage.setScene(new Scene(parent, 1280, 720));
         this.m_stage.show();
     }
+/*void BaseScene::DisplayGameEndScene();*/
 
-    public void displayNewRound() throws IOException
+/**/
+/*
+BaseScene::DisplayNewRound()
+
+NAME
+
+    BaseScene::DisplayNewRound - Displays the new round scene
+
+SYNOPSIS
+
+    void BaseScene::DisplayNewRound()
+
+DESCRIPTION
+
+    The function prepares and display the scene for a new Round.
+
+RETURNS
+
+AUTHOR
+
+    Jay Pendon
+
+DATE
+
+    7:54am 4/2/2020
+
+*/
+/**/
+    private void DisplayNewRound() throws IOException
     {
         FXMLLoader loader= new FXMLLoader(getClass().getResource("NewRoundScene.fxml"));
         Parent parent = loader.load();
@@ -153,8 +240,38 @@ public class BaseScene implements Initializable {
         this.m_stage.setScene(new Scene(parent, 1280, 720));
         this.m_stage.show();
     }
+/*void BaseScene::DisplayNewRound();*/
 
-    public void displayPlayerScene() throws IOException
+/**/
+/*
+BaseScene::DisplayPlayerScene()
+
+NAME
+
+    BaseScene::DisplayPlayerScene - Displays the PlayerScene
+
+SYNOPSIS
+
+    void BaseScene::DisplayPlayerScene();
+
+DESCRIPTION
+
+    The function prepares and displays the PlayerScene when it is the player's
+    turn.
+
+RETURNS
+
+AUTHOR
+
+    Jay Pendon
+
+DATE
+
+    8:33am 4/2/2020
+
+*/
+/**/
+    private void DisplayPlayerScene() throws IOException
     {
         FXMLLoader loader= new FXMLLoader(getClass().getResource("playerScene.fxml"));
         Parent parent = loader.load();
@@ -170,8 +287,40 @@ public class BaseScene implements Initializable {
         window.setScene(scene);
         window.show();
     }
+/*void BaseScene::DisplayPlayerScene();*/
 
-    public void displayComputerAction(String a_computerAction, Vector<Card> a_cardsUsed) throws IOException
+/**/
+/*
+BaseScene::DisplayComputerAction(String a_computerAction, Vector<Card> a_cardsUsed)
+
+NAME
+
+    BaseScene::DisplayComputerAction - Displays the Computer's action
+
+SYNOPSIS
+
+    void BaseScene::DisplayComputerAction(String a_computerAction, Vector<Card> a_cardsUsed)
+        a_computerAction        -> String containing the computer's action
+        a_cardsUsed             -> Vector of Card objects
+
+DESCRIPTION
+
+    The function prepares the next scene and passes a_computerAction and a_cardsUsed to the
+    next controller.
+
+RETURNS
+
+AUTHOR
+
+    Jay Pendon
+
+DATE
+
+    10:05am 4/2/2020
+
+*/
+/**/
+    private void DisplayComputerAction(String a_computerAction, Vector<Card> a_cardsUsed) throws IOException
     {
         FXMLLoader computerActionScene = new FXMLLoader(getClass().getResource("computerActionScene.fxml"));
         Parent parent = computerActionScene.load();
@@ -179,16 +328,45 @@ public class BaseScene implements Initializable {
 
         ComputerActionScene controller = computerActionScene.getController();
 
-        controller.setCardsUsed(a_cardsUsed);
-        controller.setComputerAction(a_computerAction);
-        controller.setGameFile(this.m_gameFile);
-        controller.setStage(this.m_stage);
+        controller.SetCardsUsed(a_cardsUsed);
+        controller.SetComputerAction(a_computerAction);
+        controller.SetGameFile(this.m_gameFile);
+        controller.SetStage(this.m_stage);
 
         this.m_stage.setScene(new Scene(parent, 1280, 720));
         this.m_stage.show();
     }
+/*void BaseScene::DisplayComputerAction(String a_computerAction, Vector<Card> a_cardsUsed);*/
 
-    public void displayBaseScene() throws IOException
+/**/
+/*
+BaseScene::DisplayBaseScene()
+
+NAME
+
+    BaseScene::DisplayBaseScene - Displays the BaseScene
+
+SYNOPSIS
+
+    void BaseScene::DisplayBaseScene();
+
+DESCRIPTION
+
+    The function prepares and displays the BaseScene
+
+RETURNS
+
+AUTHOR
+
+    Jay Pendon
+
+DATE
+
+        6:06am 4/12/2020
+
+*/
+/**/
+    private void DisplayBaseScene() throws IOException
     {
         // Load Game Scene to Continue the game
         FXMLLoader loader= new FXMLLoader(getClass().getResource("BaseScene.fxml"));
@@ -196,15 +374,73 @@ public class BaseScene implements Initializable {
         parent.setStyle("-fx-background-color: #009900;");
 
         BaseScene controller = loader.getController();
-        controller.setGameFile(this.m_gameFile);
-        controller.setStage(this.m_stage);
+        controller.SetGameFile(this.m_gameFile);
+        controller.SetStage(this.m_stage);
 
         this.m_stage.setScene(new Scene(parent, 1280, 720));
         this.m_stage.show();
     }
+/*void BaseScene::DisplayBaseScene()*/
 
-    public void setGameFile(GameFile a_gameFile) { this.m_gameFile = a_gameFile; }
+/**/
+/*
+BaseScene::SetGameFile(GameFile a_gameFile)
 
-    public void setStage(Stage a_stage) { this.m_stage = a_stage; }
+NAME
+
+    BaseScene::SetGameFile - Sets the GameFile for the controller
+
+SYNOPSIS
+
+    void BaseScene::SetGameFile(GameFile a_gameFile);
+        a_gameFile          -> GameFile object
+
+DESCRIPTION
+
+    The function sets m_gameFile as a_gameFile.
+
+RETURNS
+
+AUTHOR
+
+    Jay Pendon
+
+DATE
+
+    1:21pm 4/11/2020
+*/
+/**/
+    public void SetGameFile(GameFile a_gameFile) { this.m_gameFile = a_gameFile; }
+
+/**/
+/*
+BaseScene::SetStage(Stage a_stage)
+
+NAME
+
+    BaseScene::SetStage - Sets the stage
+
+SYNOPSIS
+
+    void BaseScene::SetStage(Stage a_stage);
+        a_stage         -> Stage object
+
+DESCRIPTION
+
+    The function sets m_stage as a_stage.
+
+RETURNS
+
+AUTHOR
+
+    Jay Pendon
+
+DATE
+
+    1:21pm 4/11/2020
+
+*/
+/**/
+    public void SetStage(Stage a_stage) { this.m_stage = a_stage; }
 
 }

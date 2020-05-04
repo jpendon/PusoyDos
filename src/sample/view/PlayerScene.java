@@ -157,8 +157,8 @@ public class PlayerScene implements Initializable {
         parent.setStyle("-fx-background-color: #009900;");
 
         BaseScene controller = loader.getController();
-        controller.setGameFile(this.m_gameFile);
-        controller.setStage(this.stage);
+        controller.SetGameFile(this.m_gameFile);
+        controller.SetStage(this.stage);
 
 
         this.stage.setScene(new Scene(parent, 1280, 720));
@@ -218,6 +218,7 @@ public class PlayerScene implements Initializable {
 
         gameInfoPane.setText(gameString);
         gameInfoPane.setFont(new Font(20));
+        gameInfoPane.setStyle("-fx-font-weight: bold;");
     }
 
 
@@ -228,9 +229,9 @@ public class PlayerScene implements Initializable {
         parent.setStyle("-fx-background-color: #009900;");
 
         InvalidActionScene controller = loader.getController();
-        controller.setGameFile(this.m_gameFile);
-        controller.setCardsSelected(cards);
-        controller.setStage(this.stage);
+        controller.SetGameFile(this.m_gameFile);
+        controller.SetCardsSelected(cards);
+        controller.SetStage(this.stage);
 
         this.stage.setScene(new Scene(parent, 1280, 720));
         this.stage.show();

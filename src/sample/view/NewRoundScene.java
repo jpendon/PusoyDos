@@ -63,8 +63,8 @@ public class NewRoundScene implements Initializable {
         parent.setStyle("-fx-background-color: #009900;");
 
         BaseScene controller = loader.getController();
-        controller.setGameFile(this.m_gameFile);
-        controller.setStage(this.stage);
+        controller.SetGameFile(this.m_gameFile);
+        controller.SetStage(this.stage);
 
         this.stage.setScene(new Scene(parent, 1280, 720));
         this.stage.show();

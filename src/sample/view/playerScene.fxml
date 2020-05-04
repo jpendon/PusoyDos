@@ -12,18 +12,18 @@
          <font>
             <Font size="20.0" />
          </font></Label>
-      <Button fx:id="passButton" layoutX="1203.0" layoutY="348.0" mnemonicParsing="false" onAction="#passButtonOnClick" prefHeight="25.0" prefWidth="40.0" text="Pass" />
-      <Button fx:id="playCardButton" layoutX="1188.0" layoutY="317.0" mnemonicParsing="false" onAction="#playCardButtonOnClick" text="Play Cards" />
-      <FlowPane fx:id="playerHandPane" layoutX="74.0" layoutY="425.0" prefHeight="287.0" prefWidth="1115.0" />
+      <Button fx:id="passButton" layoutX="1175.0" layoutY="544.0" mnemonicParsing="false" onAction="#passButtonOnClick" prefHeight="50.0" prefWidth="100.0" text="Pass" />
+      <Button fx:id="playCardButton" layoutX="1175.0" layoutY="472.0" mnemonicParsing="false" onAction="#playCardButtonOnClick" prefHeight="50.0" prefWidth="100.0" text="Play Cards" />
+      <FlowPane fx:id="playerHandPane" layoutX="74.0" layoutY="425.0" prefHeight="287.0" prefWidth="1085.0" />
       <FlowPane fx:id="tablePane" layoutX="305.0" layoutY="173.0" prefHeight="125.0" prefWidth="744.0" />
       <Label layoutX="305.0" layoutY="121.0" prefHeight="52.0" prefWidth="428.0" text="Table:" textAlignment="CENTER">
          <font>
-            <Font size="20.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Label>
       <Label layoutX="72.0" layoutY="367.0" prefHeight="45.0" prefWidth="326.0" text="Player Hand:">
          <font>
-            <Font size="20.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Label>
    </children>

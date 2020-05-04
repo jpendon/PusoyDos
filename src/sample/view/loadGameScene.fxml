@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.view.LoadGameScene">
    <children>
-      <Button fx:id="loadGameOneButton" layoutX="515.0" layoutY="247.0" mnemonicParsing="false" onAction="#loadGameOneButtonOnClick" prefHeight="74.0" prefWidth="162.0" text="New Game" />
-      <Button fx:id="loadGameTwoButton" layoutX="515.0" layoutY="337.0" mnemonicParsing="false" onAction="#loadGameTwoButtonOnClick" prefHeight="74.0" prefWidth="162.0" text="New Game" />
-      <Button fx:id="loadGameThreeButton" layoutX="515.0" layoutY="426.0" mnemonicParsing="false" onAction="#loadGameThreeButtonOnClick" prefHeight="74.0" prefWidth="162.0" text="New Game" />
-      <Button fx:id="deleteGameOneButton" onAction="#deleteGameOneButtonOnClick" layoutX="699.0" layoutY="272.0" mnemonicParsing="false" text="Delete" />
-      <Button fx:id="deleteGameTwoButton" onAction="#deleteGameTwoButtonOnClick" layoutX="699.0" layoutY="362.0" mnemonicParsing="false" text="Delete" />
-      <Button fx:id="deleteGameThreeButton" onAction="#deleteGameThreeButtonOnClick" layoutX="699.0" layoutY="451.0" mnemonicParsing="false" text="Delete" />
+      <Button fx:id="loadGameOneButton" layoutX="515.0" layoutY="247.0" mnemonicParsing="false" onAction="#LoadButtonOnClick" prefHeight="74.0" prefWidth="162.0" text="New Game" />
+      <Button fx:id="loadGameTwoButton" layoutX="515.0" layoutY="337.0" mnemonicParsing="false" onAction="#LoadButtonOnClick" prefHeight="74.0" prefWidth="162.0" text="New Game" />
+      <Button fx:id="loadGameThreeButton" layoutX="515.0" layoutY="426.0" mnemonicParsing="false" onAction="#LoadButtonOnClick" prefHeight="74.0" prefWidth="162.0" text="New Game" />
+      <Button fx:id="deleteGameOneButton" layoutX="699.0" layoutY="272.0" mnemonicParsing="false" onAction="#DeleteButtonOnClick" text="Delete" />
+      <Button fx:id="deleteGameTwoButton" layoutX="699.0" layoutY="362.0" mnemonicParsing="false" onAction="#DeleteButtonOnClick" text="Delete" />
+      <Button fx:id="deleteGameThreeButton" layoutX="699.0" layoutY="451.0" mnemonicParsing="false" onAction="#DeleteButtonOnClick" text="Delete" />
+      <AnchorPane fx:id="deletePane" layoutX="858.0" layoutY="262.0" prefHeight="200.0" prefWidth="338.0">
+         <children>
+            <Label fx:id="buttonLabel" layoutX="88.0" layoutY="8.0" prefHeight="53.0" prefWidth="162.0" text="Are you sure?">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <Button fx:id="yesButton" onAction="#DeleteFile" layoutX="92.0" layoutY="88.0" mnemonicParsing="false" text="Yes" />
+            <Button fx:id="noButton" onAction="#HidePane" layoutX="182.0" layoutY="88.0" mnemonicParsing="false" text="No" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

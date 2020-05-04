@@ -98,24 +98,67 @@ DATE
 /**/
     public String GetInvalidActionString(Vector<Card> a_cards, Vector<Card> a_tableCards)
     {
-        if (GetContainsS3())
+        if (GetContainsS3() && !CardsPlayedContainC3(a_cards))
             return "The Cards you played must Contain the 3 of Clubs";
-
-        if (a_cards.size() == 5)
-            return GetInvalidSet(a_cards);
-
-        if (a_cards.size() > 2)
-            return GetInvalidMultiple(a_cards);
-
-        if (a_cards.size() == 1)
-            return "The Value of the Card is Lower than the Card on the Table";
 
         if (a_cards.size() != a_tableCards.size())
             return "The Cards you played differ from the amount of Cards on the Table";
 
+        if (a_cards.size() == 5)
+            return GetInvalidSet(a_cards);
+
+        if (a_cards.size() > 1 && a_tableCards.size() > 1)
+            return GetInvalidMultiple(a_cards);
+
+        if (a_cards.size() == 1 && a_tableCards.size() == 1)
+            return "The Value of the Card is Lower than the Card on the Table";
+
+
         return "You have Selected Zero Cards.\nDid you mean to Pass the Turn?";
     }
 /*String Human::GetInvalidActionString(Vector<Card> a_cards, Vector<Card> a_tableCards);*/
+
+
+/**/
+/*
+Human::CardsPlayedContainC3(Vector<Card> a_cards)
+
+NAME
+
+    Human::CardsPlayedContainC3 - Check if cards played have C3
+
+SYNOPSIS
+
+    Boolean Human::CardsPlayedContainC3(Vector<Card> a_cards);
+        a_cards         -> Vector of Cards
+
+DESCRIPTION
+
+    The function iterates through a_cards in order to look for the card C3.
+
+RETURNS
+
+    Returns true if one of the cards is C3 and false if there isn't.
+
+AUTHOR
+
+    Jay Pendon
+
+DATE
+
+    8:34 5/3/2020
+*/
+/**/
+    private Boolean CardsPlayedContainC3(Vector<Card> a_cards)
+    {
+        for (Card card: a_cards)
+        {
+            if (card.GetCardName().equals("C3"))
+                return true;
+        }
+        return false;
+    }
+/*Boolean Human::CardsPlayedContainC3(Vector<Card> a_cards);*/
 
 /**/
 /*

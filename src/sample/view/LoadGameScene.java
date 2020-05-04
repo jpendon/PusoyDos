@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import sample.model.Game;
 import sample.model.GameFile;
@@ -27,6 +28,7 @@ public class LoadGameScene implements Initializable {
     private Vector<GameFile> gameFiles;
     private GameFile gameFile;
     private Stage stage;
+    private int m_fileNum;
 
     @FXML
     private Button loadGameOneButton;
@@ -34,6 +36,8 @@ public class LoadGameScene implements Initializable {
     private Button loadGameTwoButton;
     @FXML
     private Button loadGameThreeButton;
+    @FXML
+    private AnchorPane deletePane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -52,6 +56,7 @@ public class LoadGameScene implements Initializable {
                 saveGameFiles();
             }
 
+            deletePane.setVisible(false);
             updateButtons();
         });
     }
@@ -74,7 +79,7 @@ public class LoadGameScene implements Initializable {
         updateButtonInfo(this.loadGameThreeButton, 2);
     }
 
-    void updateButtonInfo(Button button, int index)
+    private void updateButtonInfo(Button button, int index)
     {
         GameFile gameFile = this.gameFiles.elementAt(index);
 
@@ -90,7 +95,8 @@ public class LoadGameScene implements Initializable {
         button.setText(buttonText);
     }
 
-    public void loadGameFiles() throws FileNotFoundException {
+    private void loadGameFiles() throws FileNotFoundException
+    {
         this.gameFiles = new Vector<GameFile>();
 
         Path path = Paths.get("");
@@ -167,43 +173,70 @@ public class LoadGameScene implements Initializable {
         }
     }
 
-    public void loadGameOneButtonOnClick(ActionEvent event) throws IOException { loadGame(this.gameFiles.elementAt(0)); }
 
-    public void loadGameTwoButtonOnClick(ActionEvent event) throws IOException { loadGame(this.gameFiles.elementAt(1)); }
+    public void LoadButtonOnClick(ActionEvent event) throws IOException{ GetButton(event, true); }
 
-    public void loadGameThreeButtonOnClick(ActionEvent event) throws IOException { loadGame(this.gameFiles.elementAt(2)); }
+    public void DeleteButtonOnClick(ActionEvent event) throws IOException{ GetButton(event, false);}
 
-    public void deleteGameOneButtonOnClick(ActionEvent actionEvent) { deleteGameFile(0); }
+    private void GetButton(ActionEvent a_actionEvent, Boolean a_isLoading) throws IOException
+    {
+        Object node = a_actionEvent.getSource();
+        Button button = (Button)node;
+        String buttonId = button.getId();
 
-    public void deleteGameTwoButtonOnClick(ActionEvent actionEvent) { deleteGameFile(1); }
+        if (a_isLoading)
+            LoadGame(buttonId);
 
-    public void deleteGameThreeButtonOnClick(ActionEvent actionEvent) { deleteGameFile(2); }
+        DeleteButtonOnClick(buttonId);
+    }
 
-    public void loadGame(GameFile currentGameFile) throws IOException {
+    private void LoadGame(String a_buttonId) throws IOException
+    {
+        if (a_buttonId.equals("loadGameOneButton"))
+            PrepareLoad(this.gameFiles.elementAt(0));
+
+        if (a_buttonId.equals("loadGameTwoButton"))
+            PrepareLoad(this.gameFiles.elementAt(1));
+
+        PrepareLoad(this.gameFiles.elementAt(2));
+    }
+
+    private void DeleteButtonOnClick(String a_buttonId)
+    {
+        if (a_buttonId.equals("deleteGameOneButton"))
+            DeleteGameFile(0);
+
+        if (a_buttonId.equals("deleteGameTwoButton"))
+            DeleteGameFile(1);
+
+        DeleteGameFile(2);
+    }
+
+    public void PrepareLoad(GameFile currentGameFile) throws IOException {
         Path path = Paths.get("");
         String filePath =  path.toAbsolutePath().toString()+ "\\saves\\" + currentGameFile.GetPlayerName() + "_Game.txt";
 
         // Check if File is a default
         if (currentGameFile.GetIsDefaultFile())
         {
-            displayChoosePlayerName(currentGameFile);
+            DisplayChoosePlayerName(currentGameFile);
             return;
         }
 
         // Check if the file has a game to be continued
         if (!new File(filePath).exists())
         {
-            displayChoosePlayersScene(currentGameFile);
+            DisplayChoosePlayersScene(currentGameFile);
             return;
         }
 
         // Resume Game
-        Game game = resumeGame(filePath);
+        Game game = ResumeGame(filePath);
         currentGameFile.SetGame(game);
-        displayBaseScene(currentGameFile);
+        DisplayBaseScene(currentGameFile);
     }
 
-    private Game resumeGame(String filePath) throws IOException {
+    private Game ResumeGame(String filePath) throws IOException {
         Serialization serialization = new Serialization();
 
         Round round = serialization.ResumeGame(filePath);
@@ -215,7 +248,7 @@ public class LoadGameScene implements Initializable {
         return game;
     }
 
-    private void displayBaseScene(GameFile gameFile) throws IOException
+    private void DisplayBaseScene(GameFile gameFile) throws IOException
     {
         //Begin game
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("BaseScene.fxml"));
@@ -223,31 +256,45 @@ public class LoadGameScene implements Initializable {
         parent.setStyle("-fx-background-color: #009900;");
 
         BaseScene controller = fxmlLoader.getController();
-        controller.setGameFile(gameFile);
-        controller.setStage(this.stage);
+        controller.SetGameFile(gameFile);
+        controller.SetStage(this.stage);
 
         this.stage.setScene(new Scene(parent, 1280, 720));
         this.stage.show();
     }
 
-    private void displayChoosePlayerName(GameFile gameFile) throws IOException
+    private void DisplayChoosePlayerName(GameFile gameFile) throws IOException
     {
+        Vector<String> fileNames = new Vector<String>();
+
+        for (GameFile file : this.gameFiles)
+            fileNames.add(file.GetPlayerName());
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EnterPlayerNameScene.fxml"));
         Parent parent = fxmlLoader.load();
+        parent.setStyle("-fx-background-color: #009900;");
 
         EnterPlayerNameScene controller = fxmlLoader.getController();
-        controller.setGameFile(gameFile);
-        controller.setStage(this.stage);
+        controller.SetFileNames(fileNames);
+        controller.SetGameFile(gameFile);
+        controller.SetStage(this.stage);
 
         this.stage.setScene(new Scene(parent, 1280, 720));
         this.stage.show();
     }
 
-    public void deleteGameFile(int fileNum)
+    public void DeleteGameFile(int a_fileNum)
     {
-        String fileName = this.gameFiles.elementAt(fileNum).GetPlayerName();
-        this.gameFiles.remove(fileNum);
-        this.gameFiles.insertElementAt(new GameFile("File " + (fileNum + 1), fileNum), fileNum);
+        m_fileNum = a_fileNum;
+        deletePane.setVisible(true);
+    }
+
+    @FXML
+    private void DeleteFile()
+    {
+        String fileName = this.gameFiles.elementAt(m_fileNum).GetPlayerName();
+        this.gameFiles.remove(m_fileNum);
+        this.gameFiles.insertElementAt(new GameFile("File " + (m_fileNum + 1), m_fileNum), m_fileNum);
 
         Path path = Paths.get("");
         String filePath =  path.toAbsolutePath().toString()+ "\\saves\\" + fileName + "_Game.txt";
@@ -262,25 +309,32 @@ public class LoadGameScene implements Initializable {
 
         updateButtons();
         saveGameFiles();
+        HidePane();
     }
 
-    public void displayChoosePlayersScene(GameFile chosenGameFile) throws IOException
+    public void DisplayChoosePlayersScene(GameFile chosenGameFile) throws IOException
     {
         FXMLLoader loadGameScene = new FXMLLoader(getClass().getResource("ChooseAmountOfPlayersScene.fxml"));
         Parent parent = loadGameScene.load();
+        parent.setStyle("-fx-background-color: #009900;");
 
         ChooseAmountOfPlayersScene controller = loadGameScene.getController();
-        controller.setStage(this.stage);
-        controller.setGameFile(chosenGameFile);
+        controller.SetStage(this.stage);
+        controller.SetGameFile(chosenGameFile);
 
         this.stage.setScene(new Scene(parent, 1280, 720));
         this.stage.show();
     }
 
+    @FXML
+    public void HidePane()
+    {
+        deletePane.setVisible(false);
+    }
 
-    public void setStage(Stage stage) { this.stage = stage; }
+    public void SetStage(Stage stage) { this.stage = stage; }
 
-    public void setGameFile(GameFile gameFile) { this.gameFile = gameFile; }
+    public void SetGameFile(GameFile gameFile) { this.gameFile = gameFile; }
 
 
 

@@ -14,6 +14,6 @@
       </Text>
    </top>
    <center>
-      <Button id="startButton" mnemonicParsing="false" onAction="#startButtonOnClick" prefHeight="58.0" prefWidth="108.0" text="Start" BorderPane.alignment="CENTER" />
+      <Button id="startButton" mnemonicParsing="false" onAction="#StartButtonOnClick" prefHeight="58.0" prefWidth="108.0" text="Start" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
