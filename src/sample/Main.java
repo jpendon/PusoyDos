@@ -10,7 +10,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("view/menuScene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("view/MenuScene.fxml"));
         root.setStyle("-fx-background-color: #009900;");
 
         primaryStage.setTitle("Pusoy Dos");

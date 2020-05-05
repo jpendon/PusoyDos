@@ -228,7 +228,7 @@ DATE
 /**/
     private void DisplayGameEndScene() throws IOException
     {
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("gameEndScene.fxml"));
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("GameEndScene.fxml"));
         Parent parent = loader.load();
         parent.setStyle("-fx-background-color: #009900;");
 

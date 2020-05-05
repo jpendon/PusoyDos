@@ -119,7 +119,7 @@ DATE
         this.m_gameFile.SetIsDefaultFile(false);
 
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("loadGameScene.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LoadGameScene.fxml"));
         Parent parent = fxmlLoader.load();
         parent.setStyle("-fx-background-color: #009900;");
 
@@ -362,7 +362,7 @@ DATE
 /**/
     public void BackButtonOnClick() throws IOException
     {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("loadGameScene.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LoadGameScene.fxml"));
         Parent parent = fxmlLoader.load();
         parent.setStyle("-fx-background-color: #009900;");
 
