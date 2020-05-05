@@ -37,8 +37,39 @@ public class EnterPlayerNameScene implements Initializable {
     @FXML
     private Button continueButton;
 
+/**/
+/*
+EnterPlayerNameScene::initialize(URL a_location, ResourceBundle a_resources)
+
+NAME
+
+    EnterPlayerNameScene::initialize - initialize function for controller
+
+SYNOPSIS
+
+    void EnterPlayerNameScene::initialize(URL a_location, ResourceBundle a_resources);
+        a_location          -> URL Object
+        a_resources         -> ResourceBundle Object
+
+DESCRIPTION
+
+    The function serves as the initialize function for this class. The function sets
+    infoLabel's text as "Enter your name".
+
+RETURNS
+
+AUTHOR
+
+    Jay Pendon
+
+DATE
+
+    5:40am 4/4/2020
+
+*/
+/**/
     @Override
-    public void initialize(URL location, ResourceBundle resources)
+    public void initialize(URL a_location, ResourceBundle a_resources)
     {
         Platform.runLater(()->
         {

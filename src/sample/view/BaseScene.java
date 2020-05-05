@@ -18,8 +18,46 @@ public class BaseScene implements Initializable {
 
     private Stage m_stage;
 
+
+/**/
+/*
+BaseScene::initialize(URL a_location, ResourceBundle a_resources)
+
+NAME
+
+    BaseScene::initialize - initialize function for controller
+
+SYNOPSIS
+
+    void BaseScene::initialize(URL a_location, ResourceBundle a_resources);
+        a_location          -> URL Object
+        a_resources         -> ResourceBundle Object
+
+DESCRIPTION
+
+    The function serves as the initialize function for this class. The function checks to see if the
+    game has ended and if it did then DisplayGameEndScene is called. It also checks to see if there
+    is only one player remaining and calls DisplayNewRound. The next condition that is checked is
+    when the game is resumed and if it is it will decrease the current player and set a boolean variable
+    representing if the game has been resumed to false. Another condition that is checked is if the round is
+    new. If it is new then the round will be setup and if it isn't then the next turn is setup. The last condition
+    that is checked is if the next player is an AI and if it is then PlayComputer turn is called. If it isn't
+    then DisplayPlayerScene is called.
+
+RETURNS
+
+AUTHOR
+
+    Jay Pendon
+
+DATE
+
+    6:00am 4/2/2020
+
+*/
+/**/
     @Override
-    public void initialize(URL location, ResourceBundle resources)
+    public void initialize(URL a_location, ResourceBundle a_resources)
     {
         Platform.runLater(()->
         {
@@ -49,6 +87,7 @@ public class BaseScene implements Initializable {
                 }
             }
 
+            // Check if the game is resumed
             if (game.GetIsResumed())
             {
                 round.SetCurrentPlayer(round.GetCurrentPlayer() - 1);
@@ -93,6 +132,8 @@ public class BaseScene implements Initializable {
             }
         });
     }
+/*void BaseScene::initialize(URL a_location, ResourceBundle a_resources);*/
+
 
 /**/
 /*
@@ -235,8 +276,8 @@ DATE
         parent.setStyle("-fx-background-color: #009900;");
 
         NewRoundScene controller = loader.getController();
-        controller.setGameFile(this.m_gameFile);
-        controller.setStage(this.m_stage);
+        controller.SetGameFile(this.m_gameFile);
+        controller.SetStage(this.m_stage);
 
         this.m_stage.setScene(new Scene(parent, 1280, 720));
         this.m_stage.show();
@@ -274,13 +315,13 @@ DATE
 /**/
     private void DisplayPlayerScene() throws IOException
     {
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("playerScene.fxml"));
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("PlayerScene.fxml"));
         Parent parent = loader.load();
         parent.setStyle("-fx-background-color: #009900;");
 
         PlayerScene controller = loader.getController();
-        controller.setGameFile(this.m_gameFile);
-        controller.setStage(this.m_stage);
+        controller.SetGameFile(this.m_gameFile);
+        controller.SetStage(this.m_stage);
 
 
         Stage window = (Stage)this.m_stage.getScene().getWindow();
@@ -323,7 +364,7 @@ DATE
 /**/
     private void DisplayComputerAction(String a_computerAction, Vector<Card> a_cardsUsed) throws IOException
     {
-        FXMLLoader computerActionScene = new FXMLLoader(getClass().getResource("computerActionScene.fxml"));
+        FXMLLoader computerActionScene = new FXMLLoader(getClass().getResource("ComputerActionScene.fxml"));
         Parent parent = computerActionScene.load();
         parent.setStyle("-fx-background-color: #009900;");
 

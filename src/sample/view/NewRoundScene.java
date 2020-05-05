@@ -1,7 +1,6 @@
 package sample.view;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -28,8 +27,40 @@ public class NewRoundScene implements Initializable {
     @FXML
     public Label newRoundInfoPane;
 
+/**/
+/*
+NewRoundScene::initialize(URL a_location, ResourceBundle a_resources)
+
+NAME
+
+    NewRoundScene::initialize - initialize function for controller
+
+SYNOPSIS
+
+    void NewRoundScene::initialize(URL a_location, ResourceBundle a_resources);
+        a_location          -> URL Object
+        a_resources         -> ResourceBundle Object
+
+DESCRIPTION
+
+    The function serves as the initialize function for this class. The function will get the game from the
+    gamefile. It will then end the round, set the players and set the boolean value for isNewRound as true.
+    Then it will call DisplayRoundInfo.
+
+RETURNS
+
+AUTHOR
+
+    Jay Pendon
+
+DATE
+
+    5:38am 4/8/2020
+
+*/
+/**/
     @Override
-    public void initialize(URL location, ResourceBundle resources)
+    public void initialize(URL a_location, ResourceBundle a_resources)
     {
         Platform.runLater(()->
         {
@@ -37,14 +68,43 @@ public class NewRoundScene implements Initializable {
             game.GetRound().EndRound();
             game.SetPlayers(game.GetRound().GetPlayers());
             game.GetRound().SetIsNewRound(true);
-            saveRound(game.GetRound());
 
             // Display Round info
-            displayRoundInfo();
+            DisplayRoundInfo();
         });
     }
+/*void NewRoundScene::initialize(URL a_location, ResourceBundle a_resources);*/
 
-    private void displayRoundInfo()
+
+/**/
+/*
+NewRoundScene::DisplayRoundInfo()
+
+NAME
+
+    NewRoundScene::DisplayRoundInfo - Displays information about round
+
+SYNOPSIS
+
+    void NewRoundScene::DisplayRoundInfo()
+
+DESCRIPTION
+
+    The function retrieves the round from m_gameFile and finds the last player. Then information about
+    the round is added to a string and displays it to the user.
+
+RETURNS
+
+AUTHOR
+
+    Jay Pendon
+
+DATE
+
+    5:45am 4/8/2020
+*/
+/**/
+    private void DisplayRoundInfo()
     {
         Game game = this.m_gameFile.GetGame();
         Round round = game.GetRound();
@@ -63,11 +123,42 @@ public class NewRoundScene implements Initializable {
 
         UpdateGameInfo();
     }
+/*void NewRoundScene::DisplayRoundInfo();*/
 
+/**/
+/*
+NewRoundScene::UpdateGameInfo()
+
+NAME
+
+    NewRoundScene::UpdateGameInfo - Updates Game information
+
+SYNOPSIS
+
+    void NewRoundScene::UpdateGameInfo();
+
+DESCRIPTION
+
+    The function retrieves information about the game such as who is going first and
+    displays it to the user.
+
+RETURNS
+
+AUTHOR
+
+    Jay Pendon
+
+DATE
+
+    5:59am 4/8/2020
+
+*/
+/**/
     private void UpdateGameInfo()
     {
         String gameString =  "";
 
+        // Iterate through m_gameFile
         for (Player player: this.m_gameFile.GetGame().GetRound().GetPlayers())
         {
             if (player instanceof AI)
@@ -89,9 +180,37 @@ public class NewRoundScene implements Initializable {
         gameInfoLabel.setFont(new Font(20));
         gameInfoLabel.setStyle("-fx-font-weight: bold;");
     }
+/*void NewRoundScene::UpdateGameInfo();*/
 
+/**/
+/*
+NewRoundScene::ContinueButtonOnClick()
 
-    public void continueButtonOnClick() throws IOException {
+NAME
+
+    NewRoundScene::ContinueButtonOnClick - Function for Continue Button
+
+SYNOPSIS
+
+    void NewRoundScene::ContinueButtonOnClick();
+
+DESCRIPTION
+
+    The function prepares and displays the BaseScene.
+
+RETURNS
+
+AUTHOR
+
+    Jay Pendon
+
+DATE
+
+    6:11am 4/12/2020
+*/
+/**/
+    public void ContinueButtonOnClick() throws IOException
+    {
         FXMLLoader loader= new FXMLLoader(getClass().getResource("BaseScene.fxml"));
         Parent parent = loader.load();
         parent.setStyle("-fx-background-color: #009900;");
@@ -103,17 +222,66 @@ public class NewRoundScene implements Initializable {
         this.stage.setScene(new Scene(parent, 1280, 720));
         this.stage.show();
     }
+/*void NewRoundScene::ContinueButtonOnClick();*/
 
-    // Remove
-    public static void saveRound(Round round)
-    {
-        Serialization serialization = new Serialization();
-        File file = new File("new_round.txt");
+/**/
+/*
+NewRoundScene::SetGameFile(GameFile a_gameFile)
 
-        serialization.SaveGame(file, round);
-    }
+NAME
 
-    public void setGameFile(GameFile gameFile) { this.m_gameFile = gameFile; }
+    NewRoundScene::SetGameFile - Sets the GameFile for the controller
 
-    public void setStage(Stage stage) { this.stage = stage; }
+SYNOPSIS
+
+    void NewRoundScene::SetGameFile(GameFile a_gameFile);
+        a_gameFile          -> GameFile object
+
+DESCRIPTION
+
+    The function sets m_gameFile as a_gameFile.
+
+RETURNS
+
+AUTHOR
+
+    Jay Pendon
+
+DATE
+
+    5:22pm 4/11/2020
+*/
+/**/
+    public void SetGameFile(GameFile a_gameFile) { this.m_gameFile = a_gameFile; }
+
+/**/
+/*
+NewRoundScene::SetStage(Stage a_stage)
+
+NAME
+
+    NewRoundScene::SetStage - Sets the stage
+
+SYNOPSIS
+
+    void NewRoundScene::SetStage(Stage a_stage);
+        a_stage         -> Stage object
+
+DESCRIPTION
+
+    The function sets m_stage as a_stage.
+
+RETURNS
+
+AUTHOR
+
+    Jay Pendon
+
+DATE
+
+    5:21pm 4/13/2020
+
+*/
+/**/
+    public void SetStage(Stage a_stage) { this.stage = a_stage; }
 }

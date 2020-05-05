@@ -44,8 +44,41 @@ public class ComputerActionScene implements Initializable {
     @FXML
     public Button continueButton;
 
+
+/**/
+/*
+ComputerActionScene::initialize(URL a_location, ResourceBundle a_resources)
+
+NAME
+
+    ComputerActionScene::initialize - initialize function for controller
+
+SYNOPSIS
+
+    void ComputerActionScene::initialize(URL a_location, ResourceBundle a_resources);
+        a_location          -> URL Object
+        a_resources         -> ResourceBundle Object
+
+DESCRIPTION
+
+    The function serves as the initialize function for this class. The function will iterate
+    through m_cardsUsed and display it to the user using imageviews and StackPanes. Then the
+    computer's action will be displayed to the user.
+
+RETURNS
+
+AUTHOR
+
+    Jay Pendon
+
+DATE
+
+    6:00am 4/3/2020
+
+*/
+/**/
     @Override
-    public void initialize(URL location, ResourceBundle resources)
+    public void initialize(URL a_location, ResourceBundle a_resources)
     {
         Platform.runLater(()->
         {
@@ -81,7 +114,37 @@ public class ComputerActionScene implements Initializable {
             UpdateGameInfo();
         });
     }
+/*void ComputerActionScene::initialize(URL a_location, ResourceBundle a_resources)*/
 
+/**/
+/*
+ComputerActionScene::::UpdateGameInfo()
+
+NAME
+
+    ComputerActionScene::::UpdateGameInfo()
+
+SYNOPSIS
+
+    void ComputerActionScene::::UpdateGameInfo();
+
+DESCRIPTION
+
+    The function creates a string using information about the game and displays it
+    to the user.
+
+RETURNS
+
+AUTHOR
+
+    Jay Pendon
+
+DATE
+
+    5:55am 5/3/2020
+
+*/
+/**/
     private void UpdateGameInfo()
     {
         String gameString =  "";
@@ -107,6 +170,8 @@ public class ComputerActionScene implements Initializable {
         gameInfoLabel.setFont(new Font(20));
         gameInfoLabel.setStyle("-fx-font-weight: bold;");
     }
+/*void ComputerActionScene::UpdateGameInfo();*/
+
 
 /**/
 /*

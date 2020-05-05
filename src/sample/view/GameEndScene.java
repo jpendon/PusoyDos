@@ -28,9 +28,39 @@ public class GameEndScene implements Initializable {
     @FXML
     private Label gameLabel;
 
+/**/
+/*
+GameEndScene::initialize(URL a_location, ResourceBundle a_resources)
 
+NAME
+
+    GameEndScene::initialize - initialize function for controller
+
+SYNOPSIS
+
+    void GameEndScene::initialize(URL a_location, ResourceBundle a_resources);
+        a_location          -> URL Object
+        a_resources         -> ResourceBundle Object
+
+DESCRIPTION
+
+    The function serves as the initialize function for this class. The function will delete
+    the file associated with the game and display the result of the game to the user.
+
+RETURNS
+
+AUTHOR
+
+    Jay Pendon
+
+DATE
+
+    6:29am 4/5/2020
+
+*/
+/**/
     @Override
-    public void initialize(URL location, ResourceBundle resources)
+    public void initialize(URL a_location, ResourceBundle a_resources)
     {
         Platform.runLater(()->{
             Game game = m_gameFile.GetGame();
@@ -62,6 +92,8 @@ public class GameEndScene implements Initializable {
 
 
     }
+/*void GameEndScene::initialize(URL a_location, ResourceBundle a_resources)*/
+
 
 /**/
 /*

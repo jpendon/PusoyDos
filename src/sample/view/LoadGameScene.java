@@ -39,8 +39,41 @@ public class LoadGameScene implements Initializable {
     @FXML
     private AnchorPane deletePane;
 
+
+/**/
+/*
+LoadGameScene::initialize(URL a_location, ResourceBundle a_resources)
+
+NAME
+
+    LoadGameScene::initialize - initialize function for controller
+
+SYNOPSIS
+
+    void LoadGameScene::initialize(URL a_location, ResourceBundle a_resources);
+        a_location          -> URL Object
+        a_resources         -> ResourceBundle Object
+
+DESCRIPTION
+
+    The function serves as the initialize function for this class. It will
+    call the function LoadGameFiles. Then it will check to see if the m_gameFile is not null  and if it isn't
+    then UpdateGameFile and SaveGameFile are called. It will also set the deletepane's visiability to false.
+
+RETURNS
+
+AUTHOR
+
+    Jay Pendon
+
+DATE
+
+    6:09am 4/6/2020
+
+*/
+/**/
     @Override
-    public void initialize(URL location, ResourceBundle resources)
+    public void initialize(URL a_location, ResourceBundle a_resources)
     {
         Platform.runLater(()->
         {
@@ -60,6 +93,8 @@ public class LoadGameScene implements Initializable {
             UpdateButtons();
         });
     }
+/*void LoadGameScene::initialize(URL a_location, ResourceBundle a_resources);*/
+
 
 /**/
 /*
@@ -831,12 +866,20 @@ DATE
 
 /**/
 /*
+LoadGameScene::DisplayChoosePlayersScene(GameFile a_chosenGameFile)
 
 NAME
 
+    LoadGameScene::DisplayChoosePlayersScene - Displays ChooseAmountOfPlayersScene
+
 SYNOPSIS
 
+    void LoadGameScene::DisplayChoosePlayersScene(GameFile a_chosenGameFile);
+        a_chosenGameFile            -> GameFile object
+
 DESCRIPTION
+
+    The function prepares and displays ChooseAmountOfPlayersScene.
 
 RETURNS
 
@@ -846,6 +889,7 @@ AUTHOR
 
 DATE
 
+    6:52am 4/6/2020
 
 */
 /**/
@@ -862,9 +906,66 @@ DATE
         this.m_stage.setScene(new Scene(parent, 1280, 720));
         this.m_stage.show();
     }
+/*void LoadGameScene::DisplayChoosePlayersScene(GameFile a_chosenGameFile);*/
 
+/**/
+/*
+LoadGameScene::SetStage(Stage a_stage)
 
+NAME
+
+    LoadGameScene::SetStage - Sets the stage
+
+SYNOPSIS
+
+    void LoadGameScene::SetStage(Stage a_stage);
+        a_stage         -> Stage object
+
+DESCRIPTION
+
+    The function sets m_stage as a_stage.
+
+RETURNS
+
+AUTHOR
+
+    Jay Pendon
+
+DATE
+
+    5:21pm 4/13/2020
+
+*/
+/**/
     public void SetStage(Stage a_stage) { this.m_stage = a_stage; }
 
+/**/
+/*
+LoadGameScene::SetGameFile(GameFile a_gameFile)
+
+NAME
+
+    LoadGameScene::SetGameFile - Sets the GameFile for the controller
+
+SYNOPSIS
+
+    void LoadGameScene::SetGameFile(GameFile a_gameFile);
+        a_gameFile          -> GameFile object
+
+DESCRIPTION
+
+    The function sets m_gameFile as a_gameFile.
+
+RETURNS
+
+AUTHOR
+
+    Jay Pendon
+
+DATE
+
+    5:22pm 4/11/2020
+*/
+/**/
     public void SetGameFile(GameFile a_gameFile) { this.m_gameFile = a_gameFile; }
 }

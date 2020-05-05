@@ -24,9 +24,39 @@ public class ChooseAmountOfPlayersScene implements Initializable {
     @FXML
     private Label choosePlayerLabel;
 
+/**/
+/*
+ChooseAmountOfPlayers::initialize(URL a_location, ResourceBundle a_resources)
 
+NAME
+
+    ChooseAmountOfPlayers::initialize - initialize function for controller
+
+SYNOPSIS
+
+    void ChooseAmountOfPlayers::initialize(URL a_location, ResourceBundle a_resources);
+        a_location          -> URL Object
+        a_resources         -> ResourceBundle Object
+
+DESCRIPTION
+
+    The function serves as the initialize function for this class. The function sets
+    choosePlayerLabel's text as "Choose the amount of players".
+
+RETURNS
+
+AUTHOR
+
+    Jay Pendon
+
+DATE
+
+    1:11pm 4/2/2020
+
+*/
+/**/
     @Override
-    public void initialize(URL location, ResourceBundle resources)
+    public void initialize(URL a_location, ResourceBundle a_resources)
     {
         Platform.runLater(()->
         {
@@ -34,6 +64,7 @@ public class ChooseAmountOfPlayersScene implements Initializable {
 
         });
     }
+/*void ChooseAmountOfPlayers::initialize(URL a_location, ResourceBundle a_resources);*/
 
 /**/
 /*
@@ -42,6 +73,7 @@ ChooseAmountOfPlayers::ThreePlayerButtonOnClick(ActionEvent actionEvent)
 NAME
 
     ChooseAmountOfPlayers::ThreePlayerButtonOnClick - Function for button
+
 SYNOPSIS
 
      void ChooseAmountOfPlayers::ThreePlayerButtonOnClick(ActionEvent actionEvent);

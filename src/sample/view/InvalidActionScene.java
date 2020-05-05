@@ -25,8 +25,40 @@ public class InvalidActionScene implements Initializable
     @FXML
     private Label invalidTextPane;
 
+
+/**/
+/*
+InvalidActionScene::initialize(URL a_location, ResourceBundle a_resources)
+
+NAME
+
+    InvalidActionScene::initialize - initialize function for controller
+
+SYNOPSIS
+
+    void InvalidActionScene::initialize(URL a_location, ResourceBundle a_resources);
+        a_location          -> URL Object
+        a_resources         -> ResourceBundle Object
+
+DESCRIPTION
+
+    The function serves as the initialize function for this class. The function will
+    get the string by calling GetInvalidActionString and display it to the user.
+
+RETURNS
+
+AUTHOR
+
+    Jay Pendon
+
+DATE
+
+    7:49am 4/10/2020
+
+*/
+/**/
     @Override
-    public void initialize(URL location, ResourceBundle resources)
+    public void initialize(URL a_location, ResourceBundle a_resources)
     {
         Platform.runLater(()->
         {
@@ -40,6 +72,7 @@ public class InvalidActionScene implements Initializable
 
         });
     }
+/*void InvalidActionScene::initialize(URL a_location, ResourceBundle a_resources);*/
 
 
 /**/
@@ -76,8 +109,8 @@ DATE
         parent.setStyle("-fx-background-color: #009900;");
 
         PlayerScene controller = loader.getController();
-        controller.setGameFile(this.m_gameFile);
-        controller.setStage(this.stage);
+        controller.SetGameFile(this.m_gameFile);
+        controller.SetStage(this.stage);
 
         this.stage.setScene(new Scene(parent, 1280, 720));
         this.stage.show();
