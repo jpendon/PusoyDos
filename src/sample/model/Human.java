@@ -101,7 +101,7 @@ DATE
         if (GetContainsS3() && !CardsPlayedContainC3(a_cards))
             return "The Cards you played must Contain the 3 of Clubs";
 
-        if (a_cards.size() != a_tableCards.size())
+        if (a_cards.size() != a_tableCards.size() && a_cards.size() != 0)
             return "The Cards you played differ from the amount of Cards on the Table";
 
         if (a_cards.size() == 5)

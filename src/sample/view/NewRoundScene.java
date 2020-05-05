@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import sample.model.*;
 
@@ -20,6 +21,9 @@ public class NewRoundScene implements Initializable {
     private GameFile m_gameFile;
 
     private Stage stage;
+
+    @FXML
+    public Label gameInfoLabel;
 
     @FXML
     public Label newRoundInfoPane;
@@ -54,10 +58,40 @@ public class NewRoundScene implements Initializable {
             roundInfoString += "You go first";
 
         this.newRoundInfoPane.setText(roundInfoString);
+        this.newRoundInfoPane.setFont(new Font(24));
+        this.newRoundInfoPane.setStyle("-fx-font-weight: bold;-fx-alignment:center;");
+
+        UpdateGameInfo();
+    }
+
+    private void UpdateGameInfo()
+    {
+        String gameString =  "";
+
+        for (Player player: this.m_gameFile.GetGame().GetRound().GetPlayers())
+        {
+            if (player instanceof AI)
+                gameString += "Computer " + player.GetPlayerId() + ": ";
+            else
+                gameString += "Player: ";
+
+            gameString += player.GetNumCards();
+
+            if (player.GetNumCards() == 1)
+                gameString += " Card Left";
+            else
+                gameString += " Cards Left";
+
+            gameString += "\t\t\t";
+        }
+
+        gameInfoLabel.setText(gameString);
+        gameInfoLabel.setFont(new Font(20));
+        gameInfoLabel.setStyle("-fx-font-weight: bold;");
     }
 
 
-    public void continueButtonOnClick(ActionEvent actionEvent) throws IOException {
+    public void continueButtonOnClick() throws IOException {
         FXMLLoader loader= new FXMLLoader(getClass().getResource("BaseScene.fxml"));
         Parent parent = loader.load();
         parent.setStyle("-fx-background-color: #009900;");

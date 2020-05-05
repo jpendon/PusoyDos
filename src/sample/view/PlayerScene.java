@@ -33,7 +33,7 @@ public class PlayerScene implements Initializable {
     private Stage stage;
 
     @FXML
-    public Label gameInfoPane;
+    public Label gameInfoLabel;
 
     @FXML
     private FlowPane playerHandPane;
@@ -55,7 +55,7 @@ public class PlayerScene implements Initializable {
             // Update View
             updatePlayerHand();
             updateTable(round);
-            updateGameInfo();
+            UpdateGameInfo();
 
         });
     }
@@ -80,10 +80,9 @@ public class PlayerScene implements Initializable {
         }
 
         // Check if Valid Action
-        if (!player.CheckCardConditions(selectedCards, round.GetTableCards()))
+        if (!player.CheckCardConditions(selectedCards, round.GetTableCards()) || selectedCards.size() == 0)
         {
             displayInvalidAction(selectedCards);
-
             return;
         }
         // Replace cards on table
@@ -108,8 +107,10 @@ public class PlayerScene implements Initializable {
     }
 
     public void passButtonOnClick() throws IOException {
-        Game game = this.m_gameFile.GetGame();
-        Round round = game.GetRound();
+        Round round = m_gameFile.GetGame().GetRound();
+
+        if (round.GetTableCards().size() == 0)
+            return;
 
         round.GetPlayers().elementAt(round.GetCurrentPlayer()).SetHasPassed(true);
         round.SetPlayerCounter(round.GetPlayerCounter() - 1);
@@ -195,7 +196,7 @@ public class PlayerScene implements Initializable {
         return iv;
     }
 
-    private void updateGameInfo()
+    private void UpdateGameInfo()
     {
         String gameString =  "";
 
@@ -216,9 +217,9 @@ public class PlayerScene implements Initializable {
             gameString += "\t\t\t";
         }
 
-        gameInfoPane.setText(gameString);
-        gameInfoPane.setFont(new Font(20));
-        gameInfoPane.setStyle("-fx-font-weight: bold;");
+        gameInfoLabel.setText(gameString);
+        gameInfoLabel.setFont(new Font(20));
+        gameInfoLabel.setStyle("-fx-font-weight: bold;");
     }
 
 

@@ -146,6 +146,7 @@ DATE
             return;
         }
 
+        computer.RemoveMultipleCardsFromHand(playCards);
         round.ReplaceTableCards(playCards);
 
         // Display Computer's Action

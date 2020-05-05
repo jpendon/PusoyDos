@@ -1,10 +1,13 @@
 package sample.view;
 
 import javafx.application.Platform;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import sample.model.AI;
 import sample.model.Game;
@@ -21,6 +24,10 @@ import java.util.ResourceBundle;
 public class GameEndScene implements Initializable {
     private GameFile m_gameFile;
     private Stage m_stage;
+
+    @FXML
+    private Label gameLabel;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -40,12 +47,16 @@ public class GameEndScene implements Initializable {
 
             this.m_gameFile.SetNumGamesPlayed(this.m_gameFile.GetNumGamesPlayed() + 1);
 
+            gameLabel.setFont(new Font(24));
+            gameLabel.setStyle("-fx-font-weight: bold;-fx-alignment:center;");
             if (winner instanceof AI)
             {
                 this.m_gameFile.SetNumLosses(this.m_gameFile.GetNumLosses() + 1);
+                gameLabel.setText("You Lose");
                 return;
             }
 
+            gameLabel.setText("You Win");
             this.m_gameFile.SetNumWins(this.m_gameFile.GetNumWins() + 1);
         });
 

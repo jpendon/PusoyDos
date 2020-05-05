@@ -33,6 +33,9 @@ public class ComputerActionScene implements Initializable {
     private Stage m_stage;
 
     @FXML
+    public Label gameInfoLabel;
+
+    @FXML
     private FlowPane cardsUsedPane;
 
     @FXML
@@ -73,7 +76,36 @@ public class ComputerActionScene implements Initializable {
             // Update computerActionPane
             this.computerActionPane.setText(m_computerAction);
             this.computerActionPane.setFont(new Font(20));
+            this.computerActionPane.setStyle("-fx-font-weight: bold;fx-alignment: center;");
+
+            UpdateGameInfo();
         });
+    }
+
+    private void UpdateGameInfo()
+    {
+        String gameString =  "";
+
+        for (Player player: this.m_gameFile.GetGame().GetRound().GetPlayers())
+        {
+            if (player instanceof AI)
+                gameString += "Computer " + player.GetPlayerId() + ": ";
+            else
+                gameString += "Player: ";
+
+            gameString += player.GetNumCards();
+
+            if (player.GetNumCards() == 1)
+                gameString += " Card Left";
+            else
+                gameString += " Cards Left";
+
+            gameString += "\t\t\t";
+        }
+
+        gameInfoLabel.setText(gameString);
+        gameInfoLabel.setFont(new Font(20));
+        gameInfoLabel.setStyle("-fx-font-weight: bold;");
     }
 
 /**/

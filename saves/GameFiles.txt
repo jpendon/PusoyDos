@@ -1,14 +1,17 @@
 Game Files
+
 File Name: Jay
+Total Games Played: 8
+Number of Wins: 3
+Number of Losses: 5
+Default: false
+
+File Name: File 2
 Total Games Played: 0
 Number of Wins: 0
 Number of Losses: 0
-Default: false
-File Name: asd
-Total Games Played: 0
-Number of Wins: 0
-Number of Losses: 0
-Default: false
+Default: true
+
 File Name: File 3
 Total Games Played: 0
 Number of Wins: 0
